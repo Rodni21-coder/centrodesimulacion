@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario Personalizado</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background-color: #0505d6;
+            color: white;
+        }
+        .tituloContainer {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .form-container {
+            background-color: #fff;
+            color: #333;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .tablaContainer {
+            margin-top: 20px;
+            background-color: #fff;
+            color: #333;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #1702d1;
+            color: white;
+        }
+        td {
+            background-color: #fcfcff;
+        }
+        .icono {
+            position: absolute;
+            top: 20px;
+            color: white;
+            font-size: 24px;
+        }
+        #homeIcono {
+            left: 20px;
+        }
+        #calendarioIcono {
+            left: 60px;
+        }
+        #calculadoraIcono {
+            left: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a id="homeIcono" class="icono" href="index.html" target="_blank">
+            <i class="fas fa-home"></i>
+        </a>
+        <a id="calendarioIcono" class="icono" href="calendario.html" target="_blank">
+            <i class="fas fa-calendar-alt"></i>
+        </a>
+        <a id="calculadoraIcono" class="icono" href="calculadora.html" target="_blank">
+            <i class="fas fa-calculator"></i>
+        </a>
+
+        <div class="tituloContainer">
+            <h1>Calendario Personalizado</h1>
+        </div>
+
+        <form id="formularioEvento" class="form-container">
+            <div class="form-group">
+                <label for="simulador">Nombre del simulador:</label>
+                <select id="simulador" name="simulador" class="form-control" required>
+                    <option value="Victoria °S2200">Victoria °S2200</option>
+                    <option value="HAL°S5301">HAL°S5301</option>
+                    <option value="Pediatric HAL°S2225">Pediatric HAL°S2225</option>
+                    <option value="Super Tory°S2220">Super Tory°S2220</option>
+                    <option value="TRAUMA HAL°S3040.100">TRAUMA HAL°S3040.100</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="fecha">Fecha:</label>
+                <input type="date" id="fecha" name="fecha" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="hora">Hora:</label>
+                <input type="time" id="hora" name="hora" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="cantidadEstudiantes">Cantidad de Estudiantes:</label>
+                <input type="number" id="cantidadEstudiantes" name="cantidadEstudiantes" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="aula">Aula del Simulador:</label>
+                <input type="text" id="aula" name="aula" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="profesor">Profesor:</label>
+                <input type="text" id="profesor" name="profesor" class="form-control" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Agregar al Calendario</button>
+        </form>
+
+        <div id="tablasSimuladores">
+            <div class="tablaContainer" id="tablaVictoria">
+                <h2>Victoria °S2200</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Cantidad de Estudiantes</th>
+                            <th>Aula</th>
+                            <th>Profesor</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div class="tablaContainer" id="tablaHAL">
+                <h2>HAL°S5301</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Cantidad de Estudiantes</th>
+                            <th>Aula</th>
+                            <th>Profesor</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div class="tablaContainer" id="tablaPediatricHAL">
+                <h2>Pediatric HAL°S2225</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Cantidad de Estudiantes</th>
+                            <th>Aula</th>
+                            <th>Profesor</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div class="tablaContainer" id="tablaSuperTory">
+                <h2>Super Tory°S2220</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Cantidad de Estudiantes</th>
+                            <th>Aula</th>
+                            <th>Profesor</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div class="tablaContainer" id="tablaTRAUMAHAL">
+                <h2>TRAUMA HAL°S3040.100</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Cantidad de Estudiantes</th>
+                            <th>Aula</th>
+                            <th>Profesor</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+        <p id="resultado" class="text-white"></p>
+        <p id="totalGeneral" class="text-white"></p>
+
+        <div id="nombreAutor">Hecho por Rodni Rodriguez</div>
+    </div>
+
+    <script>
+        document.getElementById('formularioEvento').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            var simulador = document.getElementById('simulador').value;
+            var fecha = document.getElementById('fecha').value;
+            var hora = document.getElementById('hora').value;
+            var cantidadEstudiantes = document.getElementById('cantidadEstudiantes').value;
+            var aula = document.getElementById('aula').value;
+            var profesor = document.getElementById('profesor').value;
+
+            var fila = `
+                <tr>
+                    <td>${fecha}</td>
+                    <td>${hora}</td>
+                    <td>${cantidadEstudiantes}</td>
+                    <td>${aula}</td>
+                    <td>${profesor}</td>
+                    <td><button class="btn btn-danger btn-sm" onclick="eliminarEvento(this, '${simulador}', '${fecha}', '${hora}')">Eliminar</button></td>
+                </tr>
+            `;
+
+            var tablaId = '';
+            switch (simulador) {
+                case 'Victoria °S2200':
+                    tablaId = 'tablaVictoria';
+                    break;
+                case 'HAL°S5301':
+                    tablaId = 'tablaHAL';
+                    break;
+                case 'Pediatric HAL°S2225':
+                    tablaId = 'tablaPediatricHAL';
+                    break;
+                case 'Super Tory°S2220':
+                    tablaId = 'tablaSuperTory';
+                    break;
+                case 'TRAUMA HAL°S3040.100':
+                    tablaId = 'tablaTRAUMAHAL';
+                    break;
+            }
+
+            document.querySelector(`#${tablaId} tbody`).innerHTML += fila;
+
+            // Guardar en localStorage
+            guardarEnLocalStorage(simulador, fecha, hora, cantidadEstudiantes, aula, profesor);
+
+            // Limpiar el formulario
+            document.getElementById('formularioEvento').reset();
+        });
+
+        function guardarEnLocalStorage(simulador, fecha, hora, cantidadEstudiantes, aula, profesor) {
+            var eventos = JSON.parse(localStorage.getItem('eventos')) || {};
+            if (!eventos[simulador]) {
+                eventos[simulador] = [];
+            }
+            eventos[simulador].push({ fecha, hora, cantidadEstudiantes, aula, profesor });
+            localStorage.setItem('eventos', JSON.stringify(eventos));
+        }
+
+        function cargarDesdeLocalStorage() {
+            var eventos = JSON.parse(localStorage.getItem('eventos')) || {};
+            for (var simulador in eventos) {
+                eventos[simulador].forEach(evento => {
+                    var fila = `
+                        <tr>
+                            <td>${evento.fecha}</td>
+                            <td>${evento.hora}</td>
+                            <td>${evento.cantidadEstudiantes}</td>
+                            <td>${evento.aula}</td>
+                            <td>${evento.profesor}</td>
+                            <td><button class="btn btn-danger btn-sm" onclick="eliminarEvento(this, '${simulador}', '${evento.fecha}', '${evento.hora}')">Eliminar</button></td>
+                        </tr>
+                    `;
+                    var tablaId = '';
+                    switch (simulador) {
+                        case 'Victoria °S2200':
+                            tablaId = 'tablaVictoria';
+                            break;
+                        case 'HAL°S5301':
+                            tablaId = 'tablaHAL';
+                            break;
+                        case 'Pediatric HAL°S2225':
+                            tablaId = 'tablaPediatricHAL';
+                            break;
+                        case 'Super Tory°S2220':
+                            tablaId = 'tablaSuperTory';
+                            break;
+                        case 'TRAUMA HAL°S3040.100':
+                            tablaId = 'tablaTRAUMAHAL';
+                            break;
+                    }
+                    document.querySelector(`#${tablaId} tbody`).innerHTML += fila;
+                });
+            }
+        }
+
+        function eliminarEvento(button, simulador, fecha, hora) {
+            // Eliminar la fila de la tabla
+            var row = button.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+
+            // Eliminar del localStorage
+            var eventos = JSON.parse(localStorage.getItem('eventos')) || {};
+            if (eventos[simulador]) {
+                eventos[simulador] = eventos[simulador].filter(evento => evento.fecha !== fecha || evento.hora !== hora);
+                localStorage.setItem('eventos', JSON.stringify(eventos));
+            }
+        }
+
+        // Cargar los datos desde localStorage al cargar la página
+        window.onload = cargarDesdeLocalStorage;
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

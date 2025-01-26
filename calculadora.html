@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcular Escenarios</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background-color: #0192fa;
+        }
+        .tituloContainer {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        #logoDerecha {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .icono {
+            position: absolute;
+            top: 20px;
+            color: white;
+            font-size: 24px;
+        }
+        #homeIcono {
+            left: 20px;
+        }
+        #calendarioIcono {
+            left: 60px;
+        }
+        #calculadoraIcono {
+            left: 100px;
+        }
+        #nombreAutor {
+            text-align: right;
+            margin-top: 20px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img id="logoDerecha" src="logo.png" alt="Logo Derecha" width="100">
+        <a id="homeIcono" class="icono" href="index.html">
+            <i class="fas fa-home"></i>
+        </a>
+        <a id="calendarioIcono" class="icono" href="calendario.html">
+            <i class="fas fa-calendar-alt"></i>
+        </a>
+        <a id="calculadoraIcono" class="icono" href="calculadora.html">
+            <i class="fas fa-calculator"></i>
+        </a>
+
+        <div class="tituloContainer">
+            <h1 class="text-white">Columbus hospital simulation center</h1>
+            <h2 class="text-white">Calculadora de líquidos simulados</h2>
+        </div>
+
+        <form id="formulario" class="bg-light p-4 rounded">
+            <div class="form-group">
+                <label for="nombre">Nombre del simulador:</label>
+                <select id="nombre" name="nombre" class="form-control" required>
+                    <option value="Victoria °S2200">Victoria °S2200</option>
+                    <option value="HAL°S5301">HAL°S5301</option>
+                    <option value="Pediatric HAL°S2225">Pediatric HAL°S2225</option>
+                    <option value="Super Tory°S2220">Super Tory°S2220</option>
+                    <option value="TRAUMA HAL°S3040.100">TRAUMA HAL°S3040.100</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="tipoLiquido">Tipo de Líquido:</label>
+                <select id="tipoLiquido" name="tipoLiquido" class="form-control" required>
+                    <option value="Sangre Simulada">Sangre Simulada</option>
+                    <option value="Orina Simulada">Orina Simulada</option>
+                    <option value="Aceite Mineral">Aceite Mineral</option>
+                    <option value="Sangre Glucosa">Sangre Glucosa</option>
+                    <option value="Lágrima">Lágrima y sudor</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="mililitros">Mililitros por Escenario:</label>
+                <input type="number" id="mililitros" name="mililitros" class="form-control" placeholder="Ej. 200" required>
+            </div>
+
+            <div class="form-group">
+                <label for="galones">Galones de capacidad:</label>
+                <input type="number" id="galones" name="galones" class="form-control" placeholder="Ej. 10" required>
+            </div>
+
+            <div class="form-group">
+                <label for="pruebaPiloto">Prueba Piloto:</label>
+                <input type="number" id="pruebaPiloto" name="pruebaPiloto" class="form-control" placeholder="Ej. 5" required>
+            </div>
+
+            <button type="button" class="btn btn-primary" onclick="calcularEscenarios()">Calcular Escenarios</button>
+        </form>
+
+        <div id="tablasSimuladores">
+            <div class="tablaContainer" id="tablaVictoria">
+                <h2>Victoria °S2200</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Tipo de Líquido</th>
+                            <th>Escenarios por Galón</th>
+                            <th>Total de Escenarios</th>
+                            <th>Escenarios Sobrantes</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div class="tablaContainer" id="tablaHAL">
+                <h2>HAL°S5301</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Tipo de Líquido</th>
+                            <th>Escenarios por Galón</th>
+                            <th>Total de Escenarios</th>
+                            <th>Escenarios Sobrantes</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div class="tablaContainer" id="tablaPediatricHAL">
+                <h2>Pediatric HAL°S2225</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Tipo de Líquido</th>
+                            <th>Escenarios por Galón</th>
+                            <th>Total de Escenarios</th>
+                            <th>Escenarios Sobrantes</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div class="tablaContainer" id="tablaSuperTory">
+                <h2>Super Tory°S2220</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Tipo de Líquido</th>
+                            <th>Escenarios por Galón</th>
+                            <th>Total de Escenarios</th>
+                            <th>Escenarios Sobrantes</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div class="tablaContainer" id="tablaTRAUMAHAL">
+                <h2>TRAUMA HAL°S3040.100</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Tipo de Líquido</th>
+                            <th>Escenarios por Galón</th>
+                            <th>Total de Escenarios</th>
+                            <th>Escenarios Sobrantes</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+        <p id="resultado" class="text-white"></p>
+        <p id="totalGeneral" class="text-white"></p>
+
+        <div id="nombreAutor">Hecho por Rodni Rodriguez</div>
+    </div>
+
+    <script>
+        function calcularEscenarios() {
+            var nombre = document.getElementById('nombre').value;
+            var tipoLiquido = document.getElementById('tipoLiquido').value;
+            var mililitros = parseFloat(document.getElementById('mililitros').value);
+            var galones = parseFloat(document.getElementById('galones').value);
+            var pruebaPiloto = parseFloat(document.getElementById('pruebaPiloto').value);
+
+            // Validar entradas
+            if (isNaN(mililitros) || mililitros <= 0 || isNaN(galones) || galones <= 0 || isNaN(pruebaPiloto) || nombre === "") {
+                document.getElementById('resultado').innerText = "Por favor, ingrese valores válidos.";
+                return;
+            }
+
+            // Calcular escenarios
+            var escenariosPorGalon = 3000 / mililitros;
+            var totalEscenarios = galones * escenariosPorGalon;
+            var escenariosSobrantes = totalEscenarios - pruebaPiloto; // Calcular escenarios sobrantes
+
+            var fila = `
+                <tr>
+                    <td>${nombre}</td>
+                    <td>${tipoLiquido}</td>
+                    <td>${escenariosPorGalon.toFixed(2)}</td>
+                    <td>${totalEscenarios.toFixed(2)}</td>
+                    <td>${escenariosSobrantes.toFixed(2)}</td>
+                    <td><button class="btn btn-danger btn-sm" onclick="eliminarEvento(this, '${nombre}', '${tipoLiquido}')">Eliminar</button></td>
+                </tr>
+            `;
+
+            var tablaId = '';
+            switch (nombre) {
+                case 'Victoria °S2200':
+                    tablaId = 'tablaVictoria';
+                    break;
+                case 'HAL°S5301':
+                    tablaId = 'tablaHAL';
+                    break;
+                case 'Pediatric HAL°S2225':
+                    tablaId = 'tablaPediatricHAL';
+                    break;
+                case 'Super Tory°S2220':
+                    tablaId = 'tablaSuperTory';
+                    break;
+                case 'TRAUMA HAL°S3040.100':
+                    tablaId = 'tablaTRAUMAHAL';
+                    break;
+            }
+
+            document.querySelector(`#${tablaId} tbody`).innerHTML += fila;
+
+            // Guardar en localStorage
+            guardarEnLocalStorage(nombre, tipoLiquido, escenariosPorGalon, totalEscenarios, escenariosSobrantes);
+
+            // Limpiar el formulario
+            document.getElementById('formulario').reset();
+        }
+
+        function guardarEnLocalStorage(nombre, tipoLiquido, escenariosPorGalon, totalEscenarios, escenariosSobrantes) {
+            var eventos = JSON.parse(localStorage.getItem('eventos')) || {};
+            if (!eventos[nombre]) {
+                eventos[nombre] = [];
+            }
+            eventos[nombre].push({ tipoLiquido, escenariosPorGalon, totalEscenarios, escenariosSobrantes });
+            localStorage.setItem('eventos', JSON.stringify(eventos));
+        }
+
+        function cargarDesdeLocalStorage() {
+            var eventos = JSON.parse(localStorage.getItem('eventos')) || {};
+            for (var nombre in eventos) {
+                eventos[nombre].forEach(evento => {
+                    var fila = `
+                        <tr>
+                            <td>${nombre}</td>
+                            <td>${evento.tipoLiquido}</td>
+                            <td>${evento.escenariosPorGalon.toFixed(2)}</td>
+                            <td>${evento.totalEscenarios.toFixed(2)}</td>
+                            <td>${evento.escenariosSobrantes.toFixed(2)}</td>
+                            <td><button class="btn btn-danger btn-sm" onclick="eliminarEvento(this, '${nombre}', '${evento.tipoLiquido}')">Eliminar</button></td>
+                        </tr>
+                    `;
+                    var tablaId = '';
+                    switch (nombre) {
+                        case 'Victoria °S2200':
+                            tablaId = 'tablaVictoria';
+                            break;
+                        case 'HAL°S5301':
+                            tablaId = 'tablaHAL';
+                            break;
+                        case 'Pediatric HAL°S2225':
+                            tablaId = 'tablaPediatricHAL';
+                            break;
+                        case 'Super Tory°S2220':
+                            tablaId = 'tablaSuperTory';
+                            break;
+                        case 'TRAUMA HAL°S3040.100':
+                            tablaId = 'tablaTRAUMAHAL';
+                            break;
+                    }
+                    document.querySelector(`#${tablaId} tbody`).innerHTML += fila;
+                });
+            }
+        }
+
+        function eliminarEvento(button, nombre, tipoLiquido) {
+            // Eliminar la fila de la tabla
+            var row = button.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+
+            // Eliminar del localStorage
+            var eventos = JSON.parse(localStorage.getItem('eventos')) || {};
+            if (eventos[nombre]) {
+                eventos[nombre] = eventos[nombre].filter(evento => evento.tipoLiquido !== tipoLiquido);
+                localStorage.setItem('eventos', JSON.stringify(eventos));
+            }
+        }
+
+        // Cargar los datos desde localStorage al cargar la página
+        window.onload = cargarDesdeLocalStorage;
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
