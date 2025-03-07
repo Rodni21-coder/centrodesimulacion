@@ -63,6 +63,9 @@
         #calculadoraIcono {
             left: 100px;
         }
+        .download-btn {
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -137,6 +140,7 @@
                     </thead>
                     <tbody></tbody>
                 </table>
+                <button class="btn btn-success download-btn" onclick="descargarCalendario('Victoria °S2200')">Descargar Calendario</button>
             </div>
             <div class="tablaContainer" id="tablaHAL">
                 <h2>HAL°S5301</h2>
@@ -153,6 +157,7 @@
                     </thead>
                     <tbody></tbody>
                 </table>
+                <button class="btn btn-success download-btn" onclick="descargarCalendario('HAL°S5301')">Descargar Calendario</button>
             </div>
             <div class="tablaContainer" id="tablaPediatricHAL">
                 <h2>Pediatric HAL°S2225</h2>
@@ -169,6 +174,7 @@
                     </thead>
                     <tbody></tbody>
                 </table>
+                <button class="btn btn-success download-btn" onclick="descargarCalendario('Pediatric HAL°S2225')">Descargar Calendario</button>
             </div>
             <div class="tablaContainer" id="tablaSuperTory">
                 <h2>Super Tory°S2220</h2>
@@ -185,6 +191,7 @@
                     </thead>
                     <tbody></tbody>
                 </table>
+                <button class="btn btn-success download-btn" onclick="descargarCalendario('Super Tory°S2220')">Descargar Calendario</button>
             </div>
             <div class="tablaContainer" id="tablaTRAUMAHAL">
                 <h2>TRAUMA HAL°S3040.100</h2>
@@ -201,6 +208,7 @@
                     </thead>
                     <tbody></tbody>
                 </table>
+                <button class="btn btn-success download-btn" onclick="descargarCalendario('TRAUMA HAL°S3040.100')">Descargar Calendario</button>
             </div>
         </div>
 
@@ -317,6 +325,25 @@
                 eventos[simulador] = eventos[simulador].filter(evento => evento.fecha !== fecha || evento.hora !== hora);
                 localStorage.setItem('eventos', JSON.stringify(eventos));
             }
+        }
+
+        function descargarCalendario(simulador) {
+            var eventos = JSON.parse(localStorage.getItem('eventos')) || {};
+            var eventosSimulador = eventos[simulador] || [];
+            var csvContent = "data:text/csv;charset=utf-8,Fecha,Hora,Cantidad de Estudiantes,Aula,Profesor\n";
+
+            eventosSimulador.forEach(evento => {
+                var row = `${evento.fecha},${evento.hora},${evento.cantidadEstudiantes},${evento.aula},${evento.profesor}`;
+                csvContent += row + "\n";
+            });
+
+            var encodedUri = encodeURI(csvContent);
+            var link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", simulador + "_calendario.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
 
         // Cargar los datos desde localStorage al cargar la página
