@@ -117,8 +117,8 @@
             </div>
 
             <div class="form-group">
-                <label for="profesor">Profesor:</label>
-                <input type="text" id="profesor" name="profesor" class="form-control" required>
+                <label for="preceptor">preceptor:</label>
+                <input type="text" id="preceptor" name="preceptor" class="form-control" required>
             </div>
 
             <button type="submit" class="btn btn-primary">Agregar al Calendario</button>
@@ -134,7 +134,7 @@
                             <th>Hora</th>
                             <th>Cantidad de Estudiantes</th>
                             <th>Aula</th>
-                            <th>Profesor</th>
+                            <th>Preceptor</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -151,7 +151,7 @@
                             <th>Hora</th>
                             <th>Cantidad de Estudiantes</th>
                             <th>Aula</th>
-                            <th>Profesor</th>
+                            <th>Preceptor</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -168,7 +168,7 @@
                             <th>Hora</th>
                             <th>Cantidad de Estudiantes</th>
                             <th>Aula</th>
-                            <th>Profesor</th>
+                            <th>Preceptor</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -185,7 +185,7 @@
                             <th>Hora</th>
                             <th>Cantidad de Estudiantes</th>
                             <th>Aula</th>
-                            <th>Profesor</th>
+                            <th>Preceptor</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -202,7 +202,7 @@
                             <th>Hora</th>
                             <th>Cantidad de Estudiantes</th>
                             <th>Aula</th>
-                            <th>Profesor</th>
+                            <th>Preceptor</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -215,7 +215,7 @@
         <p id="resultado" class="text-white"></p>
         <p id="totalGeneral" class="text-white"></p>
 
-        <div id="nombreAutor">Hecho por Rodni Rodriguez</div>
+        <div id="nombreAutor">Hecho por Tec. simulación Rodni Rodriguez</div>
     </div>
 
     <script>
@@ -227,7 +227,7 @@
             var hora = document.getElementById('hora').value;
             var cantidadEstudiantes = document.getElementById('cantidadEstudiantes').value;
             var aula = document.getElementById('aula').value;
-            var profesor = document.getElementById('profesor').value;
+            var preceptor = document.getElementById('Preceptor').value;
 
             var fila = `
                 <tr>
@@ -235,7 +235,7 @@
                     <td>${hora}</td>
                     <td>${cantidadEstudiantes}</td>
                     <td>${aula}</td>
-                    <td>${profesor}</td>
+                    <td>${preceptor}</td>
                     <td><button class="btn btn-danger btn-sm" onclick="eliminarEvento(this, '${simulador}', '${fecha}', '${hora}')">Eliminar</button></td>
                 </tr>
             `;
@@ -262,18 +262,18 @@
             document.querySelector(`#${tablaId} tbody`).innerHTML += fila;
 
             // Guardar en localStorage
-            guardarEnLocalStorage(simulador, fecha, hora, cantidadEstudiantes, aula, profesor);
+            guardarEnLocalStorage(simulador, fecha, hora, cantidadEstudiantes, aula, preceptor);
 
             // Limpiar el formulario
             document.getElementById('formularioEvento').reset();
         });
 
-        function guardarEnLocalStorage(simulador, fecha, hora, cantidadEstudiantes, aula, profesor) {
+        function guardarEnLocalStorage(simulador, fecha, hora, cantidadEstudiantes, aula, preceptor) {
             var eventos = JSON.parse(localStorage.getItem('eventos')) || {};
             if (!eventos[simulador]) {
                 eventos[simulador] = [];
             }
-            eventos[simulador].push({ fecha, hora, cantidadEstudiantes, aula, profesor });
+            eventos[simulador].push({ fecha, hora, cantidadEstudiantes, aula, preceptor });
             localStorage.setItem('eventos', JSON.stringify(eventos));
         }
 
@@ -287,7 +287,7 @@
                             <td>${evento.hora}</td>
                             <td>${evento.cantidadEstudiantes}</td>
                             <td>${evento.aula}</td>
-                            <td>${evento.profesor}</td>
+                            <td>${evento.preceptor}</td>
                             <td><button class="btn btn-danger btn-sm" onclick="eliminarEvento(this, '${simulador}', '${evento.fecha}', '${evento.hora}')">Eliminar</button></td>
                         </tr>
                     `;
@@ -330,10 +330,10 @@
         function descargarCalendario(simulador) {
             var eventos = JSON.parse(localStorage.getItem('eventos')) || {};
             var eventosSimulador = eventos[simulador] || [];
-            var csvContent = "data:text/csv;charset=utf-8,Fecha,Hora,Cantidad de Estudiantes,Aula,Profesor\n";
+            var csvContent = "data:text/csv;charset=utf-8,Fecha,Hora,Cantidad de Estudiantes,Aula,Preceptor\n";
 
             eventosSimulador.forEach(evento => {
-                var row = `${evento.fecha},${evento.hora},${evento.cantidadEstudiantes},${evento.aula},${evento.profesor}`;
+                var row = `${evento.fecha},${evento.hora},${evento.cantidadEstudiantes},${evento.aula},${evento.preceptor}`;
                 csvContent += row + "\n";
             });
 
